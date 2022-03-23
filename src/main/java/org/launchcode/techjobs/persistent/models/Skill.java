@@ -1,20 +1,31 @@
 package org.launchcode.techjobs.persistent.models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Skill extends AbstractEntity {
     @Size(min=2, max=5000)
-    private String longDescription;
+    private String description;
+
+    @ManyToMany(mappedBy = "skills")
+    private List<Job> jobs= new ArrayList<>();
 
     public Skill() {}
 
-    public String getLongDescription() {
-        return longDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setLongDescription(String longDescription) {
-        this.longDescription = longDescription;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<Job> getJobs() {
+        return jobs;
+
     }
 }
